@@ -126,23 +126,64 @@ function generarTarjetas (productos){
         <p> ${elemento.descripcion} </p>
         <p> Marca ${elemento.marca} </p>
         <b> $ ${elemento.precio} </b>
-        <button> Agregar al carrito </button>
+        <button class="agregar"> Agregar al carrito </button>
         </div>
     `}, "")
     /* aca va el reduce{
-        aca adentro estilizar las tarjetas y agregar boton de carrito
+        aca adentro estilizar las tarjetas y agregar boton de carrito //////////LISSSTOOOOOOOO//////
     } */
-    //return console.log(productos)
+ 
     document.write(tarjetitas)
-    console.log(tarjetitas)
+    
 }
 
 generarTarjetas (productos)
+
+
+//EVENT LISTENER del boton del carrito
+
+const carrito = []
+
+
+const botonesCarrito = document.getElementsByClassName("agregar") //almaceno en una variable los nodos de los botones de carrito
+
+
+//hay que hacer un FOR porque la función getElementsByClassName devuelve una colección de elementos  en lugar de un único elemento. Por lo tanto, no puedes agregar un evento directamente a la colección. Necesitas recorrer la colección y agregar el evento a cada elemento individualmente.
+
+for (i = 0; i < botonesCarrito.length; i++){   
+    botonesCarrito[i].addEventListener("click", function(){
+        console.log("producto agregado")
+    })
+}
+
+/* let botones = document.getElementsByClassName ("agregar")
+    botones.addEventListener
+
+    function respuestaClick(){
+
+        console.log ("respuesta evento")
+
+        //aca es donde hay que guardar el producto en local storage
+    }
+ */
+
 
 //boton de carrito////
 /* 
 boton que al hacerle click agregue el producto al almacenamiento local
 */
+
+///////////POR HACER
+
+//que al apretar lo guarde en el local storage. ///// event listener LISTOOOOOOO//////
+
+//falta guardar en el local storage
+
+//cambiar las imagenes null a noDisponible.jpg se usa un operador que haga algo con en dato null y visualice noDisponible.jpg
+
+//pasar el styling de las tarjetas a JS
+
+
 
 //posible forma de hacer las tarjetas en el contenedor "productos-container"////////////////////////////////////////////////////////////////////////
 
