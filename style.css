@@ -1,0 +1,14 @@
+.tarjetas{
+    background-color: yellowgreen;
+    border: 1px;
+    border-color: black;
+    width: 33%;
+    height: auto;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+button{
+    background-color: black;
+    color: white;
+}

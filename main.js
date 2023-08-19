@@ -19,7 +19,7 @@ const productos = [
         categoria: "Componentes",
         precio: 399.99,
         marca: "Nvidia",
-        imagen: "tarjeta_grafica.jpg",
+        imagen: "./imagenes/tarjeta_grafica.jpg", //cambie la imagen por una que descargue para probar
         descripcion: "Potente tarjeta gráfica para gaming de última generación.",
     },
     {
@@ -28,7 +28,7 @@ const productos = [
         categoria: "Periféricos",
         precio: 249.99,
         marca: "Dell",
-        imagen: "monitor.jpg",
+        imagen: "./imagenes/monitor.jpg",
         descripcion: "Monitor de alta resolución y excelente calidad de color.",
     },
     {
@@ -37,7 +37,7 @@ const productos = [
         categoria: "Almacenamiento",
         precio: 89.99,
         marca: "Samsung",
-        imagen: "ssd.jpg",
+        imagen: "./imagenes/SSD.jpg",
         descripcion: "Unidad de estado sólido de gran capacidad y velocidad.",
     },
     {
@@ -46,7 +46,7 @@ const productos = [
         categoria: "Periféricos",
         precio: 129.99,
         marca: "Corsair",
-        imagen: null,
+        imagen: null, //// NULLL ///////////
         descripcion: "Teclado mecánico con retroiluminación RGB personalizable.",
     },
     {
@@ -55,8 +55,8 @@ const productos = [
         categoria: "Componentes",
         precio: 299.99,
         marca: "Intel",
-        imagen: "procesador.jpg",
-        descripcion: null,
+        imagen: "./imagenes/procesador.jpg",
+        descripcion: null, //// NULLL ///////////
     },
     {
         id: 6,
@@ -64,7 +64,7 @@ const productos = [
         categoria: "Periféricos",
         precio: 39.99,
         marca: "Logitech",
-        imagen: "mouse.jpg",
+        imagen: "./imagenes/mouse_inalambrico.jpg",
         descripcion: "Mouse ergonómico inalámbrico con precisión óptica.",
     },
     {
@@ -73,7 +73,7 @@ const productos = [
         categoria: "Componentes",
         precio: 79.99,
         marca: "Crucial",
-        imagen: "ram.jpg",
+        imagen: "./imagenes/memoriaRam.jpg",
         descripcion: "Módulo de memoria RAM de alta velocidad para mejorar el rendimiento.",
     },
     {
@@ -82,7 +82,7 @@ const productos = [
         categoria: "Almacenamiento",
         precio: 119.99,
         marca: "Western Digital",
-        imagen: "disco_externo.jpg",
+        imagen: "./imagenes/disco_duro_externo.jpg", 
         descripcion: "Disco duro externo de gran capacidad para almacenar tus archivos.",
     },
     {
@@ -91,7 +91,7 @@ const productos = [
         categoria: "Componentes",
         precio: 89.99,
         marca: "EVGA",
-        imagen: null,
+        imagen: null, //// NULL //////
         descripcion: "Fuente de alimentación eficiente y de alta potencia.",
     },
     {
@@ -100,7 +100,7 @@ const productos = [
         categoria: "Audio",
         precio: 69.99,
         marca: "Razer",
-        imagen: "auriculares.jpg",
+        imagen: "./imagenes/auricularesGaming.jpg",
         descripcion: "Auriculares gaming con sonido envolvente y micrófono retráctil.",
     },
 ];
@@ -119,11 +119,25 @@ const productos = [
 //Si las imagenes tienen null tienen que usar un operador que haga algo con ese dato y visualice otra cosa podrían hacer algo así como src=${ si esta ruta de la imagen existe, usa esa ruta, sino usá esta otra} y esaotra sería como un no-disponible.jpg
 
 function generarTarjetas (productos){
+    const tarjetitas = productos.reduce((acumuladora, elemento) => {return acumuladora + `
+        <div class="tarjetas">
+        <h3> ${elemento.producto} </h3>
+        <img src= ${elemento.imagen} alt= ${elemento.producto}>
+        <p> ${elemento.descripcion} </p>
+        <p> Marca ${elemento.marca} </p>
+        <b> $ ${elemento.precio} </b>
+        <button> Agregar al carrito </button>
+        </div>
+    `}, "")
     /* aca va el reduce{
         aca adentro estilizar las tarjetas y agregar boton de carrito
     } */
-    return console.log(productos)
+    //return console.log(productos)
+    document.write(tarjetitas)
+    console.log(tarjetitas)
 }
+
+generarTarjetas (productos)
 
 //boton de carrito////
 /* 
@@ -141,7 +155,8 @@ let tarjetas = document.createElement("div")
 tarjetas.innerHTML = `<h3> ${producto.nombre} </h3>
                       <p> ${producto.descripcion} </p>
                       <p> ${producto.marca} </p>
-                      <b> $ ${producto.precio} </b>`;
+                      <b> $ ${producto.precio} </b>
+                      <button>Agregar al carrito</button>`;
 
 for (const producto of productos){
     let contenedor = document.createElement("div");
