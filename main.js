@@ -19,7 +19,7 @@ const productos = [
         categoria: "Componentes",
         precio: 399.99,
         marca: "Nvidia",
-        imagen: "./imagenes/tarjeta_grafica.jpg", //cambie la imagen por una que descargue para probar
+        imagen: "./imagenes/tarjeta_grafica.jpg", 
         descripcion: "Potente tarjeta gráfica para gaming de última generación.",
     },
     {
@@ -46,7 +46,7 @@ const productos = [
         categoria: "Periféricos",
         precio: 129.99,
         marca: "Corsair",
-        imagen: null, //// NULLL ///////////
+        imagen: null, 
         descripcion: "Teclado mecánico con retroiluminación RGB personalizable.",
     },
     {
@@ -56,7 +56,7 @@ const productos = [
         precio: 299.99,
         marca: "Intel",
         imagen: "./imagenes/procesador.jpg",
-        descripcion: null, //// NULLL ///////////
+        descripcion: null, 
     },
     {
         id: 6,
@@ -91,7 +91,7 @@ const productos = [
         categoria: "Componentes",
         precio: 89.99,
         marca: "EVGA",
-        imagen: null, //// NULL //////
+        imagen: null, 
         descripcion: "Fuente de alimentación eficiente y de alta potencia.",
     },
     {
@@ -105,33 +105,20 @@ const productos = [
     },
 ];
 
-////BAJAR IMAGENES PARA PONER EN CADA PRODUCTO///////// LISTO
 
-
-//    c. Escribe una función llamada `generarTarjetas` que reciba el array de productos como argumento. LISTO
-
-//Dentro de esta función, utiliza un reduce para crear elementos HTML para cada producto, 
-
-//estilízalos mínimamente y 
-
-//agrega un botón "Agregar al Carrito" que al hacer clic lo agregue al almacenamiento local.
-
-//Si las imagenes tienen null tienen que usar un operador que haga algo con ese dato y visualice otra cosa podrían hacer algo así como src=${ si esta ruta de la imagen existe, usa esa ruta, sino usá esta otra} y esaotra sería como un no-disponible.jpg
 
 function generarTarjetas (productos){
     const tarjetitas = productos.reduce((acumuladora, elemento) => {return acumuladora + `
-        <div class="tarjetas">
+        <div class="tarjetas" id="${elemento.id}">
         <h3> ${elemento.producto} </h3>
-        <img src= ${elemento.imagen} alt= ${elemento.producto}>
-        <p> ${elemento.descripcion} </p>
+        <img src= ${elemento.imagen || "./imagenes/noDisponible.jpg"} alt= ${elemento.producto}>
+        <p> ${elemento.descripcion || "Lo sentimos, no tenemos una descripción de éste producto"} </p>
         <p> Marca ${elemento.marca} </p>
         <b> $ ${elemento.precio} </b>
-        <button class="agregar"> Agregar al carrito </button>
+        <button class="botones" id="${elemento.id}"> Agregar al carrito </button>
         </div>
     `}, "")
-    /* aca va el reduce{
-        aca adentro estilizar las tarjetas y agregar boton de carrito //////////LISSSTOOOOOOOO//////
-    } */
+  
  
     document.write(tarjetitas)
     
@@ -142,19 +129,54 @@ generarTarjetas (productos)
 
 //EVENT LISTENER del boton del carrito
 
-const carrito = []
+let carrito = [] ///array donde van a ir los productos seleccionados
 
 
-const botonesCarrito = document.getElementsByClassName("agregar") //almaceno en una variable los nodos de los botones de carrito
+const botonesCarrito = document.querySelectorAll(".botones")
 
+const eventoClick = (nodos, array ) => {
 
-//hay que hacer un FOR porque la función getElementsByClassName devuelve una colección de elementos  en lugar de un único elemento. Por lo tanto, no puedes agregar un evento directamente a la colección. Necesitas recorrer la colección y agregar el evento a cada elemento individualmente.
+    for (let i = 0; i < nodos.length; i++){
+       
+        nodos[i].onclick = (e) => {
 
-for (i = 0; i < botonesCarrito.length; i++){   
-    botonesCarrito[i].addEventListener("click", function(){
-        console.log("producto agregado")
-    })
+            const id = e.currentTarget.id
+            const buscarProducto = array.find(element => element.id === Number(id))
+            carrito.push(buscarProducto)
+            console.log (carrito)
+            localStorage.setItem("productos", JSON.stringify(carrito))
+        }
+    }
 }
+
+eventoClick(botonesCarrito, productos)
+
+
+
+
+
+
+
+
+
+////////////////mi codigo///////////////////////
+
+// let botonesCarrito = document.getElementsByClassName("botones") //almaceno en una variable los nodos de los botones de carrito
+
+
+// //hay que hacer un FOR porque la función getElementsByClassName devuelve una colección de elementos  en lugar de un único elemento. Por lo tanto, no puedes agregar un evento directamente a la colección. Necesitas recorrer la colección y agregar el evento a cada elemento individualmente.
+
+// for (i = 0; i < botonesCarrito.length; i++){   
+    
+//     botonesCarrito[i].addEventListener("click", function(){
+//         carrito.push(botonesCarrito[i])
+//         console.log("producto agregado")
+
+//     })
+// }
+
+
+
 
 /* let botones = document.getElementsByClassName ("agregar")
     botones.addEventListener
@@ -173,20 +195,7 @@ for (i = 0; i < botonesCarrito.length; i++){
 boton que al hacerle click agregue el producto al almacenamiento local
 */
 
-///////////POR HACER
-
-//que al apretar lo guarde en el local storage. ///// event listener LISTOOOOOOO//////
-
-//falta guardar en el local storage
-
-//cambiar las imagenes null a noDisponible.jpg se usa un operador que haga algo con en dato null y visualice noDisponible.jpg
-
-//pasar el styling de las tarjetas a JS
-
-
-
-//posible forma de hacer las tarjetas en el contenedor "productos-container"////////////////////////////////////////////////////////////////////////
-
+//posible forma de hacer las tarjetas en el contenedor "productos-container"///
 /*
 
 let container = document.getElementById("productos-container")
@@ -213,7 +222,7 @@ for (const producto of productos){
 
 */
 
-/////////MATERIALES///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////MATERIALES///////
 
 //CREANDO ELEMENTOS DESDE OBJETOS con for...of
 

@@ -1,11 +1,58 @@
+body {
+    margin: 0;
+    padding: 0;
+    
+}
+
+#productos{
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif; 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+nav {
+    background-color: #333;
+    overflow: hidden;
+    display: flex;
+    padding: 10px;
+  }
+  
+
+nav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+
+#productos-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+
 .tarjetas{
-    background-color: yellowgreen;
+    background-color: white;
     border: 1px;
     border-color: black;
-    width: 33%;
+    width: 300px;
     height: auto;
     padding: 1rem;
     margin: 1rem;
+    display: inline-block; 
+    border: 1px solid yellowgreen;
+    border-radius: 10px;
+}
+
+nav a:hover{
+    background-color: yellowgreen;
+    color: black;
+    border-radius: 10px;
 }
 
 button{
